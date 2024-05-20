@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Typography, List, ListItem, Card, CardHeader, Avatar } from '@mui/material';
-import SportsSoccerIcon from '@mui/icons-material/SportsSoccer'; // Icon for goal kings
+import { Typography, List, ListItem, Card, CardHeader, Avatar, Box, CircularProgress } from '@mui/material';
+import SportsSoccerIcon from '@mui/icons-material/SportsSoccer';
 import ReactPaginate from 'react-paginate';
-import './GoalKings.css'; // CSS for pagination styles
-import KingCrownIcon from './KingCrownIcon';
+import axios from 'axios';
+import './GoalKings.css'; // Make sure to create this CSS file
 
 function GoalKings() {
   const [goalKings, setGoalKings] = useState([]);
@@ -12,20 +12,28 @@ function GoalKings() {
   const goalKingsPerPage = 5;
 
   useEffect(() => {
-    // Simulated data from local array
-    const customGoalKings = [
-      { name: 'MAURO EMANUEL ICARDI', team: 'GALATASARAY A.Ş.', goals: 23 },
-      { name: 'EDIN DZEKO', team: 'FENERBAHÇE A.Ş.', goals: 20 },
-      { name: 'REI MANAJ', team: 'EMS YAPI SİVASSPOR', goals: 18 },
-      { name: 'THIAM MAME BABA', team: 'SİLTAŞ YAPI PENDİKSPOR FUTBOL A.Ş.', goals: 17 },
-      { name: 'ADAM BÜKŞA', team: 'BITEXEN ANTALYASPOR', goals: 15 },
-      { name: 'EBERE PAUL ONUACHU', team: 'TRABZONSPOR A.Ş.', goals: 15 },
-      // Eklemek istediğiniz diğer oyuncuları buraya aynı yapıyı kullanarak ekleyebilirsiniz.
-    ];
-    
-    // Setting the state after fetching the data
-    setGoalKings(customGoalKings);
-    setLoading(false);
+    const fetchGoalKings = async () => {
+      try {
+        const response = await axios.get('https://apiv2.allsportsapi.com/football/', {
+          params: {
+            met: 'Topscorers',
+            leagueId: 207,
+            APIkey: 'b31c5e0a2588400341a725c9caad0f3217ded08ee7e9c93c203031a1eb52ae48', // Your API key
+          },
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+          },
+        });
+        setGoalKings(response.data.result);
+      } catch (error) {
+        console.error('Error fetching goal kings', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchGoalKings();
   }, []);
 
   const handlePageClick = ({ selected }) => {
@@ -40,11 +48,11 @@ function GoalKings() {
           <CardHeader
             avatar={
               <Avatar>
-                <SportsSoccerIcon /> {/* Soccer ball icon */}
+                <SportsSoccerIcon />
               </Avatar>
             }
-            title={goalKing.name}
-            subheader={`Goller: ${goalKing.goals}, Oynadığı Maç: ${goalKing.play || ''}`}
+            title={goalKing.player_name}
+            subheader={`Takım: ${goalKing.team_name} | Goller: ${goalKing.goals} | Penaltı Golleri: ${goalKing.penalty_goals}`}
           />
         </Card>
       </ListItem>
@@ -52,7 +60,9 @@ function GoalKings() {
 
   if (loading) {
     return (
-      <Typography variant="body1" align="center">Loading...</Typography>
+      <Box display="flex" justifyContent="center" alignItems="center" height="100vh">
+        <CircularProgress />
+      </Box>
     );
   }
 
@@ -61,7 +71,6 @@ function GoalKings() {
       <Typography variant="h6" gutterBottom align="center">
         Gol Kralı
       </Typography>
-      <KingCrownIcon style={{ fontSize: '2rem', color: 'gold' }} /> {/* KingCrownIcon */}
       <List style={{ width: '100%' }}>
         {displayGoalKings}
       </List>

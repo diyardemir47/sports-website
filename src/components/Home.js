@@ -1,8 +1,6 @@
-// src/components/Home.js
 import React from 'react';
-import { Card, CardContent, Typography, Box } from '@mui/material';
+import { Box, useMediaQuery, useTheme } from '@mui/material';
 import SportsCarousel from '../screens/SportCarousel';
-import FootballStandings from '../screens/FootballStandings';
 import FootballFixtures from '../screens/FootballFixtures';
 import GoalKings from '../screens/GoalKings';
 import NewsTicker from '../screens/NewsTicker';
@@ -15,16 +13,21 @@ const categories = [
   { title: 'Tenis', description: 'Tenis turnuvaları ve oyuncu bilgileri.', imageUrl: 'https://via.placeholder.com/300/e74c3c/FFFFFF?text=Tenis' },
 ];
 
-
 function Home() {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+
   return (
     <Box sx={styles.container}>
       <Box sx={styles.fullWidth}>
+      {!isMobile && <Box sx={styles.spacing} />} {/* Adding spacing only on non-mobile devices */}
         <NewsTicker />
       </Box>
+      {!isMobile && <Box sx={styles.spacing} />} {/* Adding spacing only on non-mobile devices */}
       <Box sx={styles.fullWidth}>
         <SportsCarousel />
       </Box>
+      {!isMobile && <Box sx={styles.spacing} />} {/* Adding spacing only on non-mobile devices */}
       <hr />
       <Box sx={styles.section}>
         <div style={styles.categoryContainer}>
@@ -33,31 +36,23 @@ function Home() {
           ))}
         </div>
       </Box>
-      <Box sx={styles.section}>
-        <FootballStandings />
-      </Box>
-      <Box sx={styles.section}>
-        <FootballFixtures />
-      </Box>
-      <Box sx={styles.section}>
-        <GoalKings />
-      </Box>
     </Box>
   );
 }
 
-
-
 const styles = {
   container: {
     padding: 5,
-  },
-  section: {
-    marginBottom: 40,
-    width: '100%'
+    
   },
   fullWidth: {
-    width: '100%'
+    width: '100%',
+  },
+  section: {
+    marginBottom: 0,
+    width: '100%',
+    
+    
   },
   categoryContainer: {
     display: 'flex',
@@ -66,11 +61,15 @@ const styles = {
     flexWrap: 'wrap',
     padding: 24,
     backgroundColor: '#eaeaea',
+
   },
   cardContainer: {
     flex: 1,
     padding: 24,
-  }
+  },
+  spacing: {
+    margin: '180px 0', // Adding margin to create space
+  },
 };
 
 export default Home;

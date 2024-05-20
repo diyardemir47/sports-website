@@ -1,6 +1,6 @@
 import React from 'react';
 import Typography from '@mui/material/Typography';
-import { Box, Paper, Button, MobileStepper } from '@mui/material';
+import { Box, Paper, Button, MobileStepper, useMediaQuery, useTheme } from '@mui/material';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import SwipeableViews from 'react-swipeable-views';
@@ -34,6 +34,8 @@ const images = [
 function SportsCarousel() {
   const [activeStep, setActiveStep] = React.useState(0);
   const maxSteps = images.length;
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -77,9 +79,10 @@ function SportsCarousel() {
                   sx={{
                     display: 'block',
                     width: '100%',
-                    height: '100%',
+                    height: '80%',
                     objectFit: 'cover', // Ensure image covers the area
                     borderRadius: '15px',
+                    marginBottom:'-50px'
                   }}
                   src={step.imgPath}
                   alt={step.label}
@@ -105,7 +108,7 @@ function SportsCarousel() {
             Back
           </Button>
         }
-        sx={{ width: '100%', maxWidth: 400, mt: 2 }} // Responsive stepper
+        sx={{ width: '120%', maxWidth: 400, mt: 2 }} // Responsive stepper
       />
     </Box>
   );

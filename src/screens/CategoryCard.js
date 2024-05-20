@@ -4,7 +4,7 @@ import { Card, CardContent, Typography, CardMedia } from '@mui/material';
 function CategoryCard({ category }) {
   return (
     <div style={styles.cardContainer}>
-      <Card sx={{ minWidth: 100, maxWidth: 300, backgroundColor: '#f0f0f0' }}>
+      <Card sx={{ minWidth: 100, maxWidth: 300, backgroundColor: '#f0f0f0' }} >
         <CardMedia
           component="img"
           height="140"
@@ -28,6 +28,9 @@ const styles = {
   cardContainer: {
     flex: 1,
     padding: 24,
+    position:'relative',
+    marginBottom:'30px'
+  
   }
 };
 

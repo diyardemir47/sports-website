@@ -34,7 +34,7 @@ function NewsTicker() {
   }, []);
 
   return (
-    <Paper className={classes.root}>
+    <Paper className={classes.root} style={{    position: 'relative',    bottom:'30px',marginBottom:'150px'}}>
       <Typography variant="h6" gutterBottom>
         Son Haberler
       </Typography>

@@ -12,6 +12,7 @@ import SportsSoccerIcon from '@mui/icons-material/SportsSoccer'; // Futbol ikonu
 import SportsBasketballIcon from '@mui/icons-material/SportsBasketball'; // Basketbol ikonu
 import SportsVolleyballIcon from '@mui/icons-material/SportsVolleyball'; // Voleybol ikonu
 import SportsTennisIcon from '@mui/icons-material/SportsTennis'; // Tenis ikonu
+import Popover from '@mui/material/Popover';
 import { Link, useLocation } from 'react-router-dom';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
@@ -22,6 +23,7 @@ function Header() {
   const [anchorEl, setAnchorEl] = useState(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [activePage, setActivePage] = useState('/');
+  const [popoverAnchorEl, setPopoverAnchorEl] = useState(null);
   const location = useLocation();
 
   const handleMenuOpen = (event) => {
@@ -33,6 +35,16 @@ function Header() {
     setAnchorEl(null);
     setMenuOpen(false);
   };
+
+  const handlePopoverOpen = (event) => {
+    setPopoverAnchorEl(event.currentTarget);
+  };
+
+  const handlePopoverClose = () => {
+    setPopoverAnchorEl(null);
+  };
+
+  const popoverOpen = Boolean(popoverAnchorEl);
 
   return (
     <AppBar position="static">
@@ -100,7 +112,8 @@ function Header() {
                 <SportsTennisIcon style={{ marginRight: '8px' }} />
                 Tenis
               </MenuItem>
-              <MenuItem onClick={handleMenuClose} component={Link} to="/services" style={{ color: 'white' }}>Hizmetlerimiz</MenuItem>
+              <MenuItem onClick={handleMenuClose} component={Link} to="/futbol" style={{ color: 'white' }}>Futbol</MenuItem>
+              <MenuItem onClick={handleMenuClose} component={Link} to="/genel" style={{ color: 'white' }}>Genel</MenuItem>
               <MenuItem onClick={handleMenuClose} component={Link} to="/sponsors" style={{ color: 'white' }}>Sponsorlarımız</MenuItem>
               <MenuItem onClick={handleMenuClose} component={Link} to="/contact" style={{ color: 'white' }}>İletişim</MenuItem>
               <MenuItem onClick={handleMenuClose} style={{ color: 'white' }}>
@@ -113,18 +126,6 @@ function Header() {
           </>
         ) : (
           <>
-            <IconButton color="inherit">
-              <SportsSoccerIcon />
-            </IconButton>
-            <IconButton color="inherit">
-              <SportsBasketballIcon />
-            </IconButton>
-            <IconButton color="inherit">
-              <SportsVolleyballIcon />
-            </IconButton>
-            <IconButton color="inherit">
-              <SportsTennisIcon />
-            </IconButton>
             <Button 
               color="inherit" 
               component={Link} 
@@ -137,12 +138,46 @@ function Header() {
             <Button 
               color="inherit" 
               component={Link} 
-              to="/services" 
-              style={{ color: 'white', backgroundColor: activePage === '/services' ? '#333' : 'transparent' }}
-              onMouseEnter={() => setActivePage('/services')}
+              to="/genel" 
+              style={{ color: 'white', backgroundColor: activePage === '/genel' ? '#333' : 'transparent' }}
+              onMouseEnter={() => setActivePage('/genel')}
             >
-              Hizmetlerimiz
+              Genel
             </Button>
+            <Button
+              color="inherit"
+              style={{ color: 'white', backgroundColor: activePage === '/futbol' ? '#333' : 'transparent' }}
+              onMouseEnter={handlePopoverOpen}
+              onMouseLeave={handlePopoverClose}
+            >
+              Futbol
+            </Button>
+            <Popover
+              open={popoverOpen}
+              anchorEl={popoverAnchorEl}
+              onClose={handlePopoverClose}
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'left',
+              }}
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'left',
+              }}
+              PaperProps={{
+                style: {
+                  padding: '16px',
+                  backgroundColor: '#333', // Siyah arkaplan rengi
+                  color: 'white',
+                },
+              }}
+              onMouseEnter={handlePopoverOpen}
+              onMouseLeave={handlePopoverClose}
+            >
+              <MenuItem component={Link} to="/superlig" style={{ color: 'white' }}>Süper Lig</MenuItem>
+              <MenuItem component={Link} to="/italialigi" style={{ color: 'white' }}>İtalya Ligi</MenuItem>
+              <MenuItem component={Link} to="/ispanyaligi" style={{ color: 'white' }}>İspanya Ligi</MenuItem>
+            </Popover>
             <Button 
               color="inherit" 
               component={Link} 
