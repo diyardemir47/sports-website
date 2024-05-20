@@ -1,0 +1,31 @@
+.pagination {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+  }
+  
+  .pagination li {
+    margin-right: 5px;
+  }
+  
+  .pagination li a {
+    color: #ffffff; /* Beyaz renk */
+    text-decoration: none;
+    cursor: pointer;
+    padding: 8px 16px; /* Düğme boyutu */
+    border-radius: 4px; /* Köşe yuvarlama */
+    background: linear-gradient(to right, #8916cb, #6419c5); /* Gradient arka plan */
+    transition: background-color 0.3s, color 0.3s; /* Geçiş efekti */
+  }
+  
+  .pagination li a:hover {
+    background-color: #040827; /* Hover rengi */
+  }
+  
+  .pagination li.active a {
+    color: #ffffff; /* Beyaz renk */
+    background: #13a613; /* Aktif arka plan rengi */
+    font-weight: bold; /* Kalın yazı tipi */
+  }
+  
