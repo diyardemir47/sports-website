@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Typography from '@mui/material/Typography';
 import { Box, Paper, Button, MobileStepper, useMediaQuery, useTheme } from '@mui/material';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
@@ -8,41 +9,30 @@ import { autoPlay } from 'react-swipeable-views-utils';
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
-const images = [
-  {
-    label: 'Futbol',
-    imgPath:
-      'https://images.unsplash.com/photo-1589487391730-58f20eb2c308?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Zm9vdGJhbGx8ZW58MHx8MHx8fDA%3D',
-  },
-  {
-    label: 'Voleybol',
-    imgPath:
-      'https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dm9sbGV5YmFsbHxlbnwwfHwwfHx8MA%3D%3D',
-  },
-  {
-    label: 'Fitness',
-    imgPath:
-      'https://images.unsplash.com/photo-1556817411-31ae72fa3ea0?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8c3BvcnR8ZW58MHx8MHx8fDA%3D',
-  },
-  {
-    label: 'Bisiklet',
-    imgPath:
-      'https://images.unsplash.com/photo-1517649763962-0c623066013b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fHNwb3J0fGVufDB8fDB8fHww',
-  },
-];
-
-function SportsCarousel() {
+function SportsCarousel({ images = [], title }) {
   const [activeStep, setActiveStep] = React.useState(0);
   const maxSteps = images.length;
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
-  const handleNext = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
-  };
+  if (images.length === 0) {
+    return (
+      <Typography variant="h6" sx={{ mb: 2 }}>No images available</Typography>
+    );
+  }
 
+  const handleNext = () => {
+    setActiveStep((prevActiveStep) => {
+      const nextStep = (prevActiveStep + 1) % maxSteps;
+      return isNaN(nextStep) ? 0 : nextStep;
+    });
+  };
+  
   const handleBack = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 1);
+    setActiveStep((prevActiveStep) => {
+      const prevStep = (prevActiveStep - 1 + maxSteps) % maxSteps;
+      return isNaN(prevStep) ? maxSteps - 1 : prevStep;
+    });
   };
 
   const handleStepChange = (step) => {
@@ -50,8 +40,8 @@ function SportsCarousel() {
   };
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}>
-      <Typography sx={{ mt: 2 }}></Typography>
+    <Box sx={{ width: '100%' }}>
+      <Typography variant="h6" sx={{ mb: 2 }}>{title}</Typography>
       <Paper
         square
         elevation={0}
@@ -60,34 +50,33 @@ function SportsCarousel() {
           alignItems: 'center',
           justifyContent: 'center',
           width: '100%',
-          maxWidth: '100%',
-          height: { xs: 200, sm: 300, md: 400 }, // Responsive height
+          height: isMobile ? 200 : 400,
           bgcolor: 'background.default',
         }}
       >
         <AutoPlaySwipeableViews
-          axis={'x'}
+          axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
           index={activeStep}
           onChangeIndex={handleStepChange}
           enableMouseEvents
         >
           {images.map((step, index) => (
-            <div key={step.label}>
+            <div key={index}>
               {Math.abs(activeStep - index) <= 2 ? (
                 <Box
                   component="img"
                   sx={{
                     display: 'block',
                     width: '100%',
-                    height: '80%',
-                    objectFit: 'cover', // Ensure image covers the area
+                    height: '100%',
+                    objectFit: 'cover',
                     borderRadius: '15px',
-                    marginBottom:'-50px'
                   }}
                   src={step.imgPath}
                   alt={step.label}
                 />
               ) : null}
+              <Typography>{step.label}</Typography> {/* Etiket (label) */}
             </div>
           ))}
         </AutoPlaySwipeableViews>
@@ -97,21 +86,31 @@ function SportsCarousel() {
         position="static"
         activeStep={activeStep}
         nextButton={
-          <Button size="small" onClick={handleNext} disabled={activeStep === maxSteps - 1}>
+          <Button size="small" onClick={handleNext}>
             Next
             <KeyboardArrowRight />
           </Button>
         }
         backButton={
-          <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
+          <Button size="small" onClick={handleBack}>
             <KeyboardArrowLeft />
             Back
           </Button>
         }
-        sx={{ width: '120%', maxWidth: 400, mt: 2 }} // Responsive stepper
+        sx={{ width: '100%', mt: 2 }}
       />
     </Box>
   );
 }
+
+SportsCarousel.propTypes = {
+  images: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.string.isRequired,
+      imgPath: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  title: PropTypes.string.isRequired,
+};
 
 export default SportsCarousel;

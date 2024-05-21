@@ -5,6 +5,7 @@ import FootballFixtures from '../screens/FootballFixtures';
 import GoalKings from '../screens/GoalKings';
 import NewsTicker from '../screens/NewsTicker';
 import CategoryCard from '../screens/CategoryCard';
+import AnnouncementComponent from '../screens/AnnouncementComponent';
 
 const categories = [
   { title: 'Futbol', description: 'Futbol ile ilgili en son haberler ve maç özetleri.', imageUrl: 'https://via.placeholder.com/300/FF5733/FFFFFF?text=Futbol' },
@@ -19,8 +20,9 @@ function Home() {
 
   return (
     <Box sx={styles.container}>
+        <AnnouncementComponent />
       <Box sx={styles.fullWidth}>
-      {!isMobile && <Box sx={styles.spacing} />} {/* Adding spacing only on non-mobile devices */}
+      {!isMobile && <Box sx={styles.margin} />} {/* Adding spacing only on non-mobile devices */}
         <NewsTicker />
       </Box>
       {!isMobile && <Box sx={styles.spacing} />} {/* Adding spacing only on non-mobile devices */}
@@ -36,6 +38,10 @@ function Home() {
           ))}
         </div>
       </Box>
+      <Box sx={styles.fullWidth}>
+
+</Box>
+
     </Box>
   );
 }
@@ -68,8 +74,9 @@ const styles = {
     padding: 24,
   },
   spacing: {
-    margin: '180px 0', // Adding margin to create space
+    margin: '280px 0', // Adding margin to create space
   },
+  
 };
 
 export default Home;

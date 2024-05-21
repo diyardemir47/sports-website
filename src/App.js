@@ -33,7 +33,7 @@ function App() {
               <FootballFixtures />
               <LiveMatches/>
               <GoalKings />
-              <Players/>
+   
             </Box>
           )}
         </Box>
