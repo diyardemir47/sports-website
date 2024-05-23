@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, Grid } from '@mui/material';
 import SportsCarousel from './SportCarousel';
 
-const generalSportsImages = [
+const someImages = [
   { label: 'General Sports 1', imgPath: 'https://picsum.photos/id/1/200/300' },
   { label: 'General Sports 2', imgPath: 'https://picsum.photos/id/1/200/300' },
   // Add more images
@@ -35,7 +35,7 @@ function CarouselContainer() {
           <Grid item>
             <SportsCarousel images={footballImages} title="Football News" />
           </Grid>
-          <Grid item>
+          <Grid item style={{background:'black'}}>
             <SportsCarousel images={basketballImages} title="Basketball News" />
           </Grid>
         </Grid>

@@ -15,7 +15,7 @@ function SportsCarousel({ images = [], title }) {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
-  if (images.length === 0) {
+  if (images.length === 1) {
     return (
       <Typography variant="h6" sx={{ mb: 2 }}>No images available</Typography>
     );

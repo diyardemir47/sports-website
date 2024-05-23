@@ -49,8 +49,8 @@ function Header() {
   return (
     <AppBar position="static">
       <Toolbar>
-        <Typography variant="h6" component="div" sx={{ flexGrow: 1 , color:'white', fontWeight:'bold', textDecoration:'none' }}>
-          <SportsSoccerIcon style={{ marginRight: '8px', color: 'white',marginTop:'1px' }} /> Berax Sport
+        <Typography variant="h4" component="div" sx={{ flexGrow: 1 , color:' #333', fontWeight:'bold', textDecoration:'none' }}>
+          <SportsSoccerIcon style={{ marginRight: '5px', color: '#333',marginTop:'1px' }} /> Berax Sport
         </Typography>
         {isMobile ? (
           <>
