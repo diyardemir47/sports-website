@@ -92,14 +92,14 @@ function LiveMatches() {
                 <TableRow key={index} sx={{ backgroundColor: determineBackgroundColor(match.event_status) }}>
                   <TableCell align="center">{match.league_name}</TableCell>
                   <TableCell align="center" style={determineWinnerStyle(homeScore, awayScore, 'home')}>
-                    <Box sx={{ background: 'linear-gradient(to right, #8E2DE2, #4A00E0)', color: 'white', padding: '5px 10px', borderRadius: '5px' }}>
-                      <img src={match.home_team_logo} alt={match.event_home_team} style={{ width: isMobile ? '20%' : '100%', height: 'auto', borderRadius: '50%' }} />
+                    <Box sx={{ background: 'linear-gradient(to right, #8E2DE2, #4A00E0)', color: 'white', padding: '0px 10px', borderRadius: '5px' }}>
+                      <img src={match.home_team_logo} alt={match.event_home_team} style={{ width: isMobile ? '20%' : '10%', height: 'auto', borderRadius: '50%' }} />
                       {match.event_home_team}
                     </Box>
                   </TableCell>
                   <TableCell align="center" style={determineWinnerStyle(homeScore, awayScore, 'away')}>
-                    <Box sx={{ background: 'linear-gradient(to right, #8E2DE2, #4A00E0)', color: 'white', padding: '5px 10px', borderRadius: '5px' }}>
-                      <img src={match.away_team_logo} alt={match.event_away_team} style={{ width: isMobile ? '20%' : '100%', height: 'auto', borderRadius: '50%' }} />
+                    <Box sx={{ background: 'linear-gradient(to right, #8E2DE2, #4A00E0)', color: 'white', padding: '0px 10px', borderRadius: '5px' }}>
+                      <img src={match.away_team_logo} alt={match.event_away_team} style={{ width: isMobile ? '20%' : '10%', height: 'auto', borderRadius: '50%' }} />
                       {match.event_away_team}
                     </Box>
                   </TableCell>

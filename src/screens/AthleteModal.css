@@ -1,0 +1,38 @@
+/* AthleteModal.css */
+
+.athlete-modal {
+    width: 400px; /* Adjust width as needed */
+    max-width: 90%; /* Limit maximum width */
+    margin: 0 auto;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .athlete-modal-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+  
+  .athlete-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  }
+  
+  .highlight-list {
+    padding-left: 20px;
+    list-style-type: disc;
+  }
+  
+  .highlight-list li {
+    margin-bottom: 5px;
+  }
+  
