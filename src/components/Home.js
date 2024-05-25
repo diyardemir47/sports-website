@@ -9,6 +9,7 @@ import AnnouncementComponent from '../screens/AnnouncementComponent';
 import FeaturedAthletes from '../screens/FeaturedAthletes';
 import LiveMatches from '../screens/LiveMatches';
 import SportsRecords from '../screens/SportsRecords';
+import Carousel from '../screens/Carousel';
 
 const categories = [
   { title: 'Futbol', description: 'Futbol ile ilgili en son haberler ve maç özetleri.', imageUrl: 'https://via.placeholder.com/300/FF5733/FFFFFF?text=Futbol' },
@@ -40,6 +41,58 @@ const sportsNews = [
   },
 ];
 
+const largeCarouselImages = [
+  {
+    label: 'Major Sports Event',
+    imgPath: 'https://static.javatpoint.com/gk/images/major-sports-events-in-the-world1.jpg',
+    
+  },
+  {
+    label: 'Major Sports Event',
+    imgPath: 'https://static.javatpoint.com/gk/images/major-sports-events-in-the-world3.jpg',
+  },
+  {
+    label: 'Major Sports Event',
+    imgPath: 'https://static.javatpoint.com/gk/images/major-sports-events-in-the-world1.jpg',
+    
+  },
+  {
+    label: 'Major Sports Event',
+    imgPath: 'https://cdn.bleacherreport.net/images_root/slides/photos/000/373/647/SUPER-BOWL-XLIV_original.jpg?1283400380',
+    
+  },
+  // Add more images...
+];
+
+const smallCarouselImages1 = [
+  {
+    label: 'Basketball Highlights',
+    imgPath: 'https://i.ytimg.com/vi/Hu146YAYAgo/maxresdefault.jpg',
+  },
+  {
+    label: 'Basketball Highlights',
+    imgPath: 'https://e0.365dm.com/23/12/768x432/skysports-basketball-nba-suns_6379365.jpg',
+  },
+  // Add more images...
+];
+
+const smallCarouselImages2 = [
+  {
+    label: 'Tennis Moments',
+    imgPath: 'https://cdn0.scrvt.com/c2465e9022ba946df66d1244a69b1c75/0110f7ac12eb1924/1e924e786097/v/b251b62878f1/nadal-djokovic.png',
+  },
+  {
+    label: 'Tennis Moments',
+    imgPath: 'https://cdn0.scrvt.com/c2465e9022ba946df66d1244a69b1c75/1217ad0d783508e4/ce1d8cd70f52/v/ab244bf0ff49/nadal-federer.png',
+  },
+  {
+    label: 'Tennis Moments',
+    imgPath: 'https://cdn0.scrvt.com/c2465e9022ba946df66d1244a69b1c75/fbcf2d785d738985/0a069a1e8baa/v/27cdc1eb73db/djokovic-federer.png',
+  },
+  // Add more images...
+];
+
+
 
 function Home() {
   const theme = useTheme();
@@ -58,20 +111,29 @@ function Home() {
         <Typography variant="h4" component="h2" gutterBottom>
           Spor Haberleri
         </Typography>
+        <Box sx={isMobile ? styles.mobileCarouselContainer : styles.carouselContainer}>
+          <Box sx={styles.largeCarousel}>
+            <Carousel images={largeCarouselImages} maxWidth={600} height={400} />
+          </Box>
+          <Box sx={isMobile ? styles.mobileSmallCarousels : styles.smallCarousels}>
+            <Carousel images={smallCarouselImages1} maxWidth={300} height={200} />
+            <Carousel images={smallCarouselImages2} maxWidth={300} height={200} />
+          </Box>
+        </Box>
         <Box sx={styles.newsContainer}>
-        {sportsNews.map((news, index) => (
-          <Box key={index} sx={styles.newsItem}>
-            <img 
-              src={news.imageUrl} 
-              alt={news.title} 
-              style={isMobile ? styles.mobileImage : styles.webImage} 
-            />
-            <Typography variant="h6" component="h3">
-              {news.title}
-            </Typography>
-            <Typography variant="body1">
-              {news.content}
-            </Typography>
+          {sportsNews.map((news, index) => (
+            <Box key={index} sx={styles.newsItem}>
+              <img 
+                src={news.imageUrl} 
+                alt={news.title} 
+                style={isMobile ? styles.mobileImage : styles.webImage} 
+              />
+              <Typography variant="h6" component="h3">
+                {news.title}
+              </Typography>
+              <Typography variant="body1">
+                {news.content}
+              </Typography>
             </Box>
           ))}
         </Box>
@@ -182,6 +244,38 @@ const styles = {
     width: '2%', // Web boyut
     height: 'auto',
     borderRadius: '4px 4px 0 0',
+  },
+  carouselContainer: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    gap: '20px',
+    padding: 3,
+    background: 'linear-gradient(135deg, #ffccff, #ffcccc)', // Gradient background
+    borderRadius: 8,
+  },
+  mobileCarouselContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '20px',
+    padding: 3,
+    background: 'linear-gradient(135deg, #ccffcc, #ccccff)', // Gradient background
+    borderRadius: 8,
+    width:'100%'
+  },
+  largeCarousel: {
+    flex: 2,
+  },
+  smallCarousels: {
+    flex: 1,
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '20px',
+  },
+  mobileSmallCarousels: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    gap: '20px',
+
   },
 };
 

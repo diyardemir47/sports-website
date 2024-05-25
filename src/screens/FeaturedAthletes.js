@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Box, Typography, Dialog, DialogTitle, DialogContent } from '@mui/material';
 import './AthleteModal.css'; // Import CSS file for modal styling
-
+import AthleteModal from './AthleteModal';
 
 const featuredAthletes = [
   { name: 'Lionel Messi', sport: 'Futbol', birthplace: 'Rosario, Argentina', age: 34, team: 'Paris Saint-Germain', imageUrl: 'https://fcb-abj-pre.s3.amazonaws.com/img/jugadors/MESSI.jpg', cw: ['7x Ballon d\'Or winner', '4x UEFA Champions League winner', '10x La Liga winner'] },
@@ -16,34 +16,11 @@ const featuredAthletes = [
   { name: 'Tom Brady', sport: 'Amerikan Futbolu', birthplace: 'San Mateo, California, USA', age: 44, team: 'Tampa Bay Buccaneers', imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Tom_Brady_2019.jpg/266px-Tom_Brady_2019.jpg', cw: ['7x Super Bowl Champion', '5x Super Bowl MVP'] },
 ];
 
-function AthleteModal({ open, onClose, athlete, coordinates }) {
-  return (
-    <Dialog open={open} onClose={onClose} className="athlete-modal" style={{ top: coordinates.y, left: coordinates.x }}>
-      <DialogTitle>{athlete.name}</DialogTitle>
-      <DialogContent>
-        <img src={athlete.imageUrl} alt={athlete.name} className="athlete-image" />
-        <Typography variant="body1">Sport: {athlete.sport}</Typography>
-        <Typography variant="body2">Birthplace: {athlete.birthplace}</Typography>
-        <Typography variant="body2">Age: {athlete.age}</Typography>
-        <Typography variant="body2">Team: {athlete.team}</Typography>
-        <Typography variant="body2">Career Highlights:</Typography>
-        <ul className="highlight-list">
-          {athlete.cw.map((highlight, index) => (
-            <li key={index}>{highlight}</li>
-          ))}
-        </ul>
-      </DialogContent>
-    </Dialog>
-  );
-}
-
 function FeaturedAthletes() {
   const [selectedAthlete, setSelectedAthlete] = useState(null);
-  const [modalCoordinates, setModalCoordinates] = useState({ x: 0, y: 0 });
 
-  const handleOpenModal = (athlete, coordinates) => {
+  const handleOpenModal = (athlete) => {
     setSelectedAthlete(athlete);
-    setModalCoordinates(coordinates);
   };
 
   const handleCloseModal = () => {
@@ -56,7 +33,7 @@ function FeaturedAthletes() {
         <Box
           key={index}
           sx={styles.athleteCard}
-          onClick={(event) => handleOpenModal(athlete, { x: event.clientX, y: event.clientY })}
+          onClick={() => handleOpenModal(athlete)}
         >
           <img src={athlete.imageUrl} alt={athlete.name} style={styles.athleteImage} />
           <Typography variant="h6">{athlete.name}</Typography>
@@ -68,7 +45,6 @@ function FeaturedAthletes() {
           open={Boolean(selectedAthlete)}
           onClose={handleCloseModal}
           athlete={selectedAthlete}
-          coordinates={modalCoordinates}
         />
       )}
     </Box>
@@ -76,30 +52,30 @@ function FeaturedAthletes() {
 }
 
 const styles = {
-    container: {
-        display: 'flex',
-        overflowX: 'scroll',
-        whiteSpace: 'nowrap',
-        padding: '10px 0',
-    },
-    athleteCard: {
-        textAlign: 'center',
-        padding: 2,
-        borderRadius: 4,
-        boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
-        width: '150px',
-        display: 'inline-block',
-        marginRight: '10px',
-        cursor: 'pointer', // Add cursor pointer to indicate it's clickable
-    },
-    athleteImage: {
-        width: '100%',
-        height: '150px',
-        objectFit: 'cover',
-        borderRadius: '50%',
-        overflow: 'hidden',
-        marginBottom: 1,
-    },
+  container: {
+    display: 'flex',
+    overflowX: 'scroll',
+    whiteSpace: 'nowrap',
+    padding: '10px 0',
+  },
+  athleteCard: {
+    textAlign: 'center',
+    padding: 2,
+    borderRadius: 4,
+    boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+    width: '150px',
+    display: 'inline-block',
+    marginRight: '10px',
+    cursor: 'pointer', // Add cursor pointer to indicate it's clickable
+  },
+  athleteImage: {
+    width: '100%',
+    height: '150px',
+    objectFit: 'cover',
+    borderRadius: '50%',
+    overflow: 'hidden',
+    marginBottom: 1,
+  },
 };
 
 export default FeaturedAthletes;
