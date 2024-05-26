@@ -1,21 +1,21 @@
 import React, { useState } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import MenuIcon from '@mui/icons-material/Menu';
 import AccountCircle from '@mui/icons-material/AccountCircle';
-import SportsSoccerIcon from '@mui/icons-material/SportsSoccer'; // Futbol ikonu
-import SportsBasketballIcon from '@mui/icons-material/SportsBasketball'; // Basketbol ikonu
-import SportsVolleyballIcon from '@mui/icons-material/SportsVolleyball'; // Voleybol ikonu
-import SportsTennisIcon from '@mui/icons-material/SportsTennis'; // Tenis ikonu
+import SportsSoccerIcon from '@mui/icons-material/SportsSoccer';
+import SportsBasketballIcon from '@mui/icons-material/SportsBasketball';
+import SportsVolleyballIcon from '@mui/icons-material/SportsVolleyball';
+import SportsTennisIcon from '@mui/icons-material/SportsTennis';
 import Popover from '@mui/material/Popover';
 import { Link, useLocation } from 'react-router-dom';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import Box from '@mui/material/Box';
 
 function Header() {
   const theme = useTheme();
@@ -47,11 +47,15 @@ function Header() {
   const popoverOpen = Boolean(popoverAnchorEl);
 
   return (
-    <AppBar position="static">
+    <AppBar position="static" sx={styles.appBar}>
       <Toolbar>
-        <Typography variant="h4" component="div" sx={{ flexGrow: 1 , color:' #333', fontWeight:'bold', textDecoration:'none' }}>
-          <SportsSoccerIcon style={{ marginRight: '5px', color: '#333',marginTop:'1px' }} /> Berax Sport
-        </Typography>
+        <Box sx={{ flexGrow: 1 }}>
+          <img 
+            src="assets/logo.png" // 'public' klasöründeki logo.png dosyasına erişim
+            alt="Berax Sport Logo" 
+            style={{ height: '50px', marginRight: '10px' }} 
+          />
+        </Box>
         {isMobile ? (
           <>
             <IconButton 
@@ -85,7 +89,7 @@ function Header() {
               <MenuItem 
                 onClick={handleMenuClose} 
                 component={Link} 
-                to="/" 
+                to="/basketball" 
                 style={{ color: 'white' }}
                 onMouseEnter={() => setActivePage('/basketball')}
               >
@@ -95,7 +99,7 @@ function Header() {
               <MenuItem 
                 onClick={handleMenuClose} 
                 component={Link} 
-                to="/" 
+                to="/volleyball" 
                 style={{ color: 'white' }}
                 onMouseEnter={() => setActivePage('/volleyball')}
               >
@@ -105,7 +109,7 @@ function Header() {
               <MenuItem 
                 onClick={handleMenuClose} 
                 component={Link} 
-                to="/" 
+                to="/tennis" 
                 style={{ color: 'white' }}
                 onMouseEnter={() => setActivePage('/tennis')}
               >
@@ -206,5 +210,11 @@ function Header() {
     </AppBar>
   );
 }
+
+const styles = {
+  appBar: {
+    background: 'linear-gradient(to right, #65e58c, #5cd14d)',
+  },
+};
 
 export default Header;

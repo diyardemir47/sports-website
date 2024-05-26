@@ -251,31 +251,40 @@ const styles = {
     gap: '20px',
     padding: 3,
     background: 'linear-gradient(135deg, #ffccff, #ffcccc)', // Gradient background
-    borderRadius: 8,
+    borderRadius: 2,
+    overflow: 'hidden', // Taşmayı engellemek için
+    maxWidth: '100%', // Maksimum genişlik
+    margin: 'auto' // Ortalamak için
   },
   mobileCarouselContainer: {
     display: 'flex',
     flexDirection: 'column',
     gap: '20px',
     padding: 3,
-    background: 'linear-gradient(135deg, #ccffcc, #ccccff)', // Gradient background
-    borderRadius: 8,
-    width:'100%'
+    background: 'linear-gradient(to right, #65e58c, #5cd14d)', // Gradient background
+    borderRadius: 1,
+    width: '100%',
+    overflow: 'hidden', // Taşmayı engellemek için
   },
   largeCarousel: {
     flex: 2,
+    borderRadius: 4,
+    overflow: 'hidden', // Taşmayı engellemek için
   },
   smallCarousels: {
     flex: 1,
     display: 'flex',
     flexDirection: 'column',
     gap: '20px',
+    borderRadius: 4,
+    overflow: 'hidden', // Taşmayı engellemek için
   },
   mobileSmallCarousels: {
     display: 'flex',
     justifyContent: 'space-between',
     gap: '20px',
-
+    borderRadius: 4,
+    overflow: 'hidden', // Taşmayı engellemek için
   },
 };
 

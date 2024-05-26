@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Box, Typography, Dialog, DialogTitle, DialogContent } from '@mui/material';
-import './AthleteModal.css'; // Import CSS file for modal styling
+import { Box, Typography } from '@mui/material';
 import AthleteModal from './AthleteModal';
+import './AthleteModal.css'; // Import CSS file for modal styling
 
 const featuredAthletes = [
   { name: 'Lionel Messi', sport: 'Futbol', birthplace: 'Rosario, Argentina', age: 34, team: 'Paris Saint-Germain', imageUrl: 'https://fcb-abj-pre.s3.amazonaws.com/img/jugadors/MESSI.jpg', cw: ['7x Ballon d\'Or winner', '4x UEFA Champions League winner', '10x La Liga winner'] },

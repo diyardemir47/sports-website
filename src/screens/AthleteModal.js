@@ -1,6 +1,6 @@
 import React from 'react';
 import { Dialog, DialogTitle, DialogContent, Typography } from '@mui/material';
-import './AthleteModal.css'; // Import CSS file for modal styling
+import './AthleteModal.css';
 
 function AthleteModal({ open, onClose, athlete }) {
   return (
@@ -10,9 +10,18 @@ function AthleteModal({ open, onClose, athlete }) {
       BackdropProps={{
         onClick: onClose, // This will close the modal when the backdrop is clicked
       }}
-      className="athlete-modal"
+      PaperProps={{
+        className: 'athlete-modal',
+        sx: { 
+          position: 'absolute', 
+          top: '50%', 
+          left: '50%', 
+          transform: 'translate(-50%, -50%)' 
+        }
+      }}
     >
-      <DialogTitle>{athlete.name}</DialogTitle>
+      <button className="close-button" onClick={onClose}>&times;</button>
+      <DialogTitle className="athlete-modal-title">{athlete.name}</DialogTitle>
       <DialogContent>
         <img src={athlete.imageUrl} alt={athlete.name} className="athlete-image" />
         <Typography variant="body1">Sport: {athlete.sport}</Typography>
