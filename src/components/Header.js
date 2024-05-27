@@ -16,6 +16,8 @@ import { Link, useLocation } from 'react-router-dom';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Box from '@mui/material/Box';
+import { Image } from 'react-bootstrap';
+import logo from '../assets/logo.png';
 
 function Header() {
   const theme = useTheme();
@@ -48,13 +50,9 @@ function Header() {
 
   return (
     <AppBar position="static" sx={styles.appBar}>
-      <Toolbar>
-        <Box sx={{ flexGrow: 1 }}>
-          <img 
-            src="assets/logo.png" // 'public' klasöründeki logo.png dosyasına erişim
-            alt="Berax Sport Logo" 
-            style={{ height: '50px', marginRight: '10px' }} 
-          />
+    <Toolbar>
+      <Box sx={{ flexGrow: 1 }}>
+      <Image src={logo} alt="Berax Sport Logo" style={{ height: '50px', marginRight: '10px' }} />
         </Box>
         {isMobile ? (
           <>
