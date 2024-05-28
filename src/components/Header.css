@@ -1,0 +1,47 @@
+.menu-item {
+    position: relative;
+    display: inline-block;
+    padding: 8px 16px;
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.menu-item::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    display: block;
+    margin-top: 18px; /* Çizgiyi biraz daha aşağıya almak için artırıldı */
+    right: 0;
+    background: white;
+    transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+.menu-item:hover::after {
+    width: 100%;
+    left: 0;
+    background: white;
+}
+
+@keyframes slideIn {
+    0% {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.menu-item:hover {
+    animation: slideIn 0.3s forwards;
+}
+
+.active-menu-item {
+    background-color: #333 !important;
+    color: white !important;
+}

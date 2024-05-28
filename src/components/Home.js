@@ -101,12 +101,6 @@ function Home() {
   return (
     <Box sx={styles.container}>
       <AnnouncementComponent />
-      <Box sx={styles.fullWidth}>
-        {!isMobile && <Box sx={styles.spacing} />} {/* Adding spacing only on non-mobile devices */}
-        <NewsTicker />
-      </Box>
-      {!isMobile && <Box sx={styles.spacing} />} {/* Adding spacing only on non-mobile devices */}
-      <hr />
       <Box sx={styles.section}>
         <Typography variant="h4" component="h2" gutterBottom>
           Spor Haberleri
@@ -120,6 +114,13 @@ function Home() {
             <Carousel images={smallCarouselImages2} maxWidth={300} height={200} />
           </Box>
         </Box>
+      <Box sx={styles.fullWidth}>
+        {!isMobile && <Box sx={styles.spacing} />} {/* Adding spacing only on non-mobile devices */}
+        <NewsTicker />
+      </Box>
+      {!isMobile && <Box sx={styles.spacing} />} {/* Adding spacing only on non-mobile devices */}
+      <hr />
+    
         <Box sx={styles.newsContainer}>
           {sportsNews.map((news, index) => (
             <Box key={index} sx={styles.newsItem}>
@@ -250,7 +251,7 @@ const styles = {
     justifyContent: 'space-between',
     gap: '20px',
     padding: 3,
-    background: 'linear-gradient(135deg, #ffccff, #ffcccc)', // Gradient background
+    background: 'linear-gradient(to right, #040404, #c97a18)', // Gradient background
     borderRadius: 2,
     overflow: 'hidden', // Taşmayı engellemek için
     maxWidth: '100%', // Maksimum genişlik
@@ -261,7 +262,7 @@ const styles = {
     flexDirection: 'column',
     gap: '20px',
     padding: 3,
-    background: 'linear-gradient(to right, #65e58c, #5cd14d)', // Gradient background
+    background: 'linear-gradient(to right, #040404, #c97a18)', // Gradient background
     borderRadius: 1,
     width: '100%',
     overflow: 'hidden', // Taşmayı engellemek için

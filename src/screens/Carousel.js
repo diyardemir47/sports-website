@@ -56,7 +56,7 @@ const Carousel = ({ images, maxWidth = 400, height = 255 }) => {
               <Box
                 component="img"
                 sx={{
-                  height,
+                  height:'50%',
                   display: 'block',
                   maxWidth,
                   overflow: 'hidden',
