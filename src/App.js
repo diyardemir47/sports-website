@@ -20,22 +20,22 @@ function App() {
       <Box display="flex" flexDirection="column" minHeight="100vh">
         <CssBaseline />
         <Header />
-        <Box display="flex" flexGrow={1} mt={2} flexDirection={isMobile ? 'column-reverse' : 'row'}>
-          <Box component="main" sx={{ flexGrow: 1 }}>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/team/:teamName" element={<TakimView />} />
-            </Routes>
-          </Box>
-          {!isMobile && (
-            <Box component="aside" sx={{ width: '30%', ml: 2 }}>
-              <FootballStandings />
-              <FootballFixtures />
-              <LiveMatches/>
-              <GoalKings />
-   
+        <Box sx={{ px: '10%', flexGrow: 1, mt: 2 }}>
+          <Box display="flex" flexDirection={isMobile ? 'column-reverse' : 'row'}>
+            <Box component="main" sx={{ flexGrow: 1 }}>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/team/:teamName" element={<TakimView />} />
+              </Routes>
             </Box>
-          )}
+            {!isMobile && (
+              <Box component="aside" sx={{ width: '15%', ml: 2 }}>
+                <FootballStandings />
+            
+                <GoalKings />
+              </Box>
+            )}
+          </Box>
         </Box>
         <Box mt={4}>
           <Footer />

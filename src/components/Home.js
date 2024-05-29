@@ -5,7 +5,6 @@ import GoalKings from '../screens/GoalKings';
 import NewsTicker from '../screens/NewsTicker';
 import CategoryCard from '../screens/CategoryCard';
 import AnnouncementComponent from '../screens/AnnouncementComponent';
-
 import FeaturedAthletes from '../screens/FeaturedAthletes';
 import LiveMatches from '../screens/LiveMatches';
 import SportsRecords from '../screens/SportsRecords';
@@ -92,7 +91,31 @@ const smallCarouselImages2 = [
   // Add more images...
 ];
 
+const newsItems = [
+  { imgPath: 'https://via.placeholder.com/150', label: 'Project 1' },
+  { imgPath: 'https://via.placeholder.com/150', label: 'Project 2' },
+  { imgPath: 'https://via.placeholder.com/150', label: 'Project 3' },
+  { imgPath: 'https://via.placeholder.com/150', label: 'Project 4' },
+  { imgPath: 'https://via.placeholder.com/150', label: 'Project 5' },
+];
 
+const NewsBoxes = () => {
+  return (
+    <Box sx={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap' }}>
+      {newsItems.map((item, index) => (
+        <Box key={index} sx={{ width: '18%', textAlign: 'center', marginBottom: 2 }}>
+          <Box
+            component="img"
+            src={item.imgPath}
+            alt={item.label}
+            sx={{ width: '100%', height: 'auto' }}
+          />
+          <Typography variant="subtitle1">{item.label}</Typography>
+        </Box>
+      ))}
+    </Box>
+  );
+};
 
 function Home() {
   const theme = useTheme();
@@ -170,6 +193,15 @@ function Home() {
         </Typography>
         <LiveMatches/>
       </Box>
+      <Box sx={styles.fullWidth}>
+        <hr />
+      </Box>
+      <Box sx={styles.section}>
+        <Typography variant="h4" component="h2" gutterBottom>
+          Choose your project!
+        </Typography>
+        <NewsBoxes />
+      </Box>
     </Box>
   );
 }
@@ -230,12 +262,6 @@ const styles = {
   spacing: {
     margin: '20px 0', // Adjusted margin for better spacing
   },
-  newsItem: {
-    backgroundColor: '#f9f9f9',
-    padding: 2,
-    borderRadius: 4,
-    boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
-  },
   mobileImage: {
     width: '20%', // Mobil boyut
     height: 'auto',
@@ -254,7 +280,7 @@ const styles = {
     background: 'linear-gradient(to right, #040404, #c97a18)', // Gradient background
     borderRadius: 2,
     overflow: 'hidden', // Taşmayı engellemek için
-    maxWidth: '100%', // Maksimum genişlik
+    maxWidth: '80%', // Maksimum genişlik
     margin: 'auto' // Ortalamak için
   },
   mobileCarouselContainer: {
@@ -271,6 +297,7 @@ const styles = {
     flex: 2,
     borderRadius: 4,
     overflow: 'hidden', // Taşmayı engellemek için
+    width:'100%'
   },
   smallCarousels: {
     flex: 1,
@@ -279,6 +306,7 @@ const styles = {
     gap: '20px',
     borderRadius: 4,
     overflow: 'hidden', // Taşmayı engellemek için
+    width:'100%'
   },
   mobileSmallCarousels: {
     display: 'flex',

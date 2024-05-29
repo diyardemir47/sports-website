@@ -37,9 +37,10 @@ const Carousel = ({ images, maxWidth = 400, height = 255 }) => {
         sx={{
           display: 'flex',
           alignItems: 'center',
-          height: 50,
+          height: 100,
           pl: 2,
           bgcolor: 'background.default',
+          width:'100%'
         }}
       >
         <Typography>{images[activeStep].label}</Typography>
@@ -56,7 +57,7 @@ const Carousel = ({ images, maxWidth = 400, height = 255 }) => {
               <Box
                 component="img"
                 sx={{
-                  height:'50%',
+                  height:'100%',
                   display: 'block',
                   maxWidth,
                   overflow: 'hidden',

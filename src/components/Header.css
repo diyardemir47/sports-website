@@ -16,14 +16,13 @@
     display: block;
     margin-top: 18px; /* Çizgiyi biraz daha aşağıya almak için artırıldı */
     right: 0;
-    background: white;
-    transition: width 0.3s ease, background-color 0.3s ease;
+
 }
 
 .menu-item:hover::after {
     width: 100%;
     left: 0;
-    background: white;
+    background: linear-gradient(45deg, #46c53d, #3a6f19);
 }
 
 @keyframes slideIn {
@@ -42,6 +41,6 @@
 }
 
 .active-menu-item {
-    background-color: #333 !important;
+    background: linear-gradient(45deg, #46c53d, #3a6f19);
     color: white !important;
 }
