@@ -14,14 +14,31 @@ const NewsBoxes = () => {
   return (
     <Box sx={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap' }}>
       {newsItems.map((item, index) => (
-        <Box key={index} sx={{ width: '18%', textAlign: 'center', marginBottom: 2 }}>
+        <Box
+          key={index}
+          sx={{
+            width: '18%',
+            textAlign: 'center',
+            marginBottom: 2,
+            backgroundColor: '#f5f5f5',
+            padding: 1,
+            borderRadius: 2,
+            boxShadow: 3,
+            transition: 'transform 0.3s',
+            '&:hover': {
+              transform: 'scale(1.05)',
+            },
+          }}
+        >
           <Box
             component="img"
             src={item.imgPath}
             alt={item.label}
-            sx={{ width: '100%', height: 'auto' }}
+            sx={{ width: '100%', height: 'auto', borderRadius: 1 }}
           />
-          <Typography variant="subtitle1">{item.label}</Typography>
+          <Typography variant="subtitle1" sx={{ marginTop: 1, color: '#333' }}>
+            {item.label}
+          </Typography>
         </Box>
       ))}
     </Box>
