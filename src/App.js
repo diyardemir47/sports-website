@@ -6,10 +6,9 @@ import Footer from './components/Footer';
 import { CssBaseline, Box, useMediaQuery, useTheme } from '@mui/material';
 import TakimView from './screens/TakimView';
 import FootballStandings from './screens/FootballStandings';
-import FootballFixtures from './screens/FootballFixtures';
 import GoalKings from './screens/GoalKings';
 import LiveMatches from './screens/LiveMatches';
-import Players from './screens/Players';
+import Statistics from './screens/Statistics'; // İstatistikler bileşenini ekleyin
 
 function App() {
   const theme = useTheme();
@@ -26,12 +25,12 @@ function App() {
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/team/:teamName" element={<TakimView />} />
+                <Route path="/istatistikler" element={<Statistics />} /> {/* İstatistikler rotasını ekleyin */}
               </Routes>
             </Box>
             {!isMobile && (
               <Box component="aside" sx={{ width: '15%', ml: 2 }}>
                 <FootballStandings />
-            
                 <GoalKings />
               </Box>
             )}

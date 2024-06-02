@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { AppBar, Toolbar, Button, IconButton, Menu, MenuItem, Popover, Box } from '@mui/material';
-import { Menu as MenuIcon, AccountCircle, SportsSoccer as SportsSoccerIcon, SportsBasketball as SportsBasketballIcon, SportsVolleyball as SportsVolleyballIcon, SportsTennis as SportsTennisIcon } from '@mui/icons-material';
+import { AppBar, Toolbar, Button, IconButton, Menu, MenuItem, Box } from '@mui/material';
+import { Menu as MenuIcon, AccountCircle, SportsSoccer as SportsSoccerIcon, SportsBasketball as SportsBasketballIcon } from '@mui/icons-material';
 import { Link, useLocation } from 'react-router-dom';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
@@ -13,7 +13,6 @@ function Header() {
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   const [anchorEl, setAnchorEl] = useState(null);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [popoverAnchorEl, setPopoverAnchorEl] = useState(null);
   const location = useLocation();
 
   const handleMenuOpen = (event) => {
@@ -26,21 +25,11 @@ function Header() {
     setMenuOpen(false);
   };
 
-  const handlePopoverOpen = (event) => {
-    setPopoverAnchorEl(event.currentTarget);
-  };
-
-  const handlePopoverClose = () => {
-    setPopoverAnchorEl(null);
-  };
-
-  const popoverOpen = Boolean(popoverAnchorEl);
-
   const menuItems = [
     { to: '/', label: 'Anasayfa', icon: SportsSoccerIcon },
     { to: '/genel', label: 'Genel', icon: SportsBasketballIcon },
     { to: '/futbol', label: 'Futbol', icon: SportsSoccerIcon },
-
+    { to: '/istatistikler', label: 'İstatistikler', icon: SportsSoccerIcon }, // Yeni menü öğesi
     { to: '/sponsors', label: 'Sponsorlarımız', icon: SportsBasketballIcon },
     { to: '/contact', label: 'İletişim', icon: SportsBasketballIcon },
   ];
