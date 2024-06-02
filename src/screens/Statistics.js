@@ -31,11 +31,11 @@ const statisticsData = {
 
 const Statistics = () => {
   const [selectedSport, setSelectedSport] = useState('Futbol');
-  const [selectedCategory, setSelectedCategory] = useState('En çok gol atan oyuncu');
+  const [selectedCategory, setSelectedCategory] = useState('');
 
   const handleSportChange = (event) => {
     setSelectedSport(event.target.value);
-    setSelectedCategory(Object.keys(statisticsData[event.target.value])[0]);
+    setSelectedCategory('');
   };
 
   const handleCategoryChange = (event) => {
@@ -45,8 +45,8 @@ const Statistics = () => {
   const categories = Object.keys(statisticsData[selectedSport]);
 
   return (
-    <Box sx={{ p: 3 }}>
-      <Typography variant="h4" gutterBottom>
+    <Box sx={{ p: 3, backgroundColor: '#f9f9f9', borderRadius: '10px' }}>
+      <Typography variant="h4" gutterBottom sx={{ color: '#333', textAlign: 'center' }}>
         Dünya Spor İstatistikleri
       </Typography>
       <FormControl fullWidth sx={{ mb: 2 }}>
@@ -62,6 +62,9 @@ const Statistics = () => {
       <FormControl fullWidth sx={{ mb: 2 }}>
         <InputLabel>Kategoriler</InputLabel>
         <Select value={selectedCategory} onChange={handleCategoryChange}>
+          <MenuItem disabled value="">
+            Seçiniz
+          </MenuItem>
           {categories.map((category) => (
             <MenuItem key={category} value={category}>
               {category}
@@ -69,12 +72,16 @@ const Statistics = () => {
           ))}
         </Select>
       </FormControl>
-      <Typography variant="h6">
-        {selectedCategory}:
-      </Typography>
-      <Typography>
-        {statisticsData[selectedSport][selectedCategory]}
-      </Typography>
+      {selectedCategory && (
+        <>
+          <Typography variant="h6" sx={{ color: '#333' }}>
+            {selectedCategory}:
+          </Typography>
+          <Typography sx={{ color: '#333' }}>
+            {statisticsData[selectedSport][selectedCategory]}
+          </Typography>
+        </>
+      )}
     </Box>
   );
 };
