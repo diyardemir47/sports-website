@@ -136,6 +136,12 @@ function Home() {
             <Carousel images={smallCarouselImages1} maxWidth={300} height={200} />
             <Carousel images={smallCarouselImages2} maxWidth={300} height={200} />
           </Box>
+           <Box sx={styles.section}>
+        <Typography variant="h4" component="h2" gutterBottom>
+          Choose your project!
+        </Typography>
+        <NewsBoxes />
+      </Box>
         </Box>
       <Box sx={styles.fullWidth}>
         {!isMobile && <Box sx={styles.spacing} />} {/* Adding spacing only on non-mobile devices */}
@@ -196,12 +202,7 @@ function Home() {
       <Box sx={styles.fullWidth}>
         <hr />
       </Box>
-      <Box sx={styles.section}>
-        <Typography variant="h4" component="h2" gutterBottom>
-          Choose your project!
-        </Typography>
-        <NewsBoxes />
-      </Box>
+     
     </Box>
   );
 }
@@ -315,6 +316,9 @@ const styles = {
     borderRadius: 4,
     overflow: 'hidden', // Taşmayı engellemek için
   },
+  label:{
+    color:'white'
+  }
 };
 
 export default Home;
