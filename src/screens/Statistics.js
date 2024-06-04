@@ -45,13 +45,17 @@ const Statistics = () => {
   const categories = Object.keys(statisticsData[selectedSport]);
 
   return (
-    <Box sx={{ p: 3, backgroundColor: '#f9f9f9', borderRadius: '10px' }}>
-      <Typography variant="h4" gutterBottom sx={{ color: '#333', textAlign: 'center' }}>
+    <Box sx={{ p: 3, backgroundColor: '#ffebee', borderRadius: '10px', boxShadow: 3 }}>
+      <Typography variant="h4" gutterBottom sx={{ color: '#d32f2f', textAlign: 'center', fontFamily: 'Roboto', fontWeight: 'bold' }}>
         Dünya Spor İstatistikleri
       </Typography>
       <FormControl fullWidth sx={{ mb: 2 }}>
-        <InputLabel>Spor Dalları</InputLabel>
-        <Select value={selectedSport} onChange={handleSportChange}>
+        <InputLabel sx={{ color: '#d32f2f' }}>Spor Dalları</InputLabel>
+        <Select
+          value={selectedSport}
+          onChange={handleSportChange}
+          sx={{ backgroundColor: '#ffffff', borderRadius: '4px' }}
+        >
           {Object.keys(statisticsData).map((sport) => (
             <MenuItem key={sport} value={sport}>
               {sport}
@@ -60,8 +64,12 @@ const Statistics = () => {
         </Select>
       </FormControl>
       <FormControl fullWidth sx={{ mb: 2 }}>
-        <InputLabel>Kategoriler</InputLabel>
-        <Select value={selectedCategory} onChange={handleCategoryChange}>
+        <InputLabel sx={{ color: '#d32f2f' }}>Kategoriler</InputLabel>
+        <Select
+          value={selectedCategory}
+          onChange={handleCategoryChange}
+          sx={{ backgroundColor: '#ffffff', borderRadius: '4px' }}
+        >
           <MenuItem disabled value="">
             Seçiniz
           </MenuItem>
@@ -74,10 +82,10 @@ const Statistics = () => {
       </FormControl>
       {selectedCategory && (
         <>
-          <Typography variant="h6" sx={{ color: '#333' }}>
+          <Typography variant="h6" sx={{ color: '#d32f2f', fontWeight: 'bold' }}>
             {selectedCategory}:
           </Typography>
-          <Typography sx={{ color: '#333' }}>
+          <Typography sx={{ color: '#d32f2f' }}>
             {statisticsData[selectedSport][selectedCategory]}
           </Typography>
         </>
