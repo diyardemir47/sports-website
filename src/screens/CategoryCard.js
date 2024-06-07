@@ -22,11 +22,11 @@ function CategoryCard({ category }) {
           image={category.imageUrl}
           alt={category.title}
         />
-        <CardContent style={styles.cardContent}>
-          <Typography gutterBottom variant="h5" component="div" style={styles.title}>
+        <CardContent sx={styles.cardContent}>
+          <Typography gutterBottom variant="h5" component="div" sx={styles.title}>
             {category.title}
           </Typography>
-          <Typography variant="body2" color="text.secondary" style={styles.description}>
+          <Typography variant="body2" color="text.secondary" sx={styles.description}>
             {category.description}
           </Typography>
         </CardContent>
